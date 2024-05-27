@@ -1,0 +1,108 @@
+<div class="container-fluid mt-5">
+  <div class="container">
+    <h3 class="profileHeading">Profile</h3>
+    <div class="row mb-4" *ngFor="let user of usersProfile" style="justify-content: center;">
+      <div class="col-2 demo">
+        <img [src]="profileImageUrl" alt="profileImage" class="profileImg mb-2"><input type="file" #fileInput
+          style="display: none;" (change)="onFileSelected($event)">
+        <button class="profileBtn" (click)="fileInput.click()">Edit Photo</button> <button class="profileBtn"
+          (click)="openModal(user)">Edit Profile</button>
+      </div>
+      <div class="col-8 demo profileInfo">
+        <p>I'm {{ user.firstName }} {{ user.lastName }} and I am above {{ user.age }} and you can send your email to
+          <span class="email">{{user.email }}</span>. I live in the State of {{ user.state }}. I like to play {{
+          user.tags.join(', ') }} and
+          reading books.{{ user.subscribe ? 'And please send me newsletters.' : '' }} Please reach out to me on my
+          phone
+          number {{ user.phone }}.
+        </p>
+        <button class="btn btn-success">I Agree</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Register</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-10 demo">
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First name" formControlName="firstName">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last name" formControlName="lastName">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Email" formControlName="email">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Phone" formControlName="phone">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="age">Age</label>
+              <input type="range" id="age" formControlName="age">
+              <span>{{ profileForm.get('age').value }}</span>
+            </div>
+            <div class="col">
+              <select id="country" formControlName="country" class="form-select">
+                <option value="">Country</option>
+                <option *ngFor="let country of countryList" [value]="country">{{ country }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <select id="state" formControlName="state" class="form-select">
+                <option value="">State</option>
+                <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+              </select>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Address" formControlName="address">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-6">
+              <input type="text" class="form-control" placeholder="Tags" formControlName="tags"
+                (keydown.enter)="addTags($event)">
+            </div>
+            <div class="col-6">
+              <div *ngFor="let tag of tags; let i = index" class="badge bg-secondary">
+                <div class="tags">
+                  <p style="display: inline-block; margin: 0 5px; color: white;">{{ tag | titlecase }}</p>
+                  <span style="color: yellow; cursor: pointer;" (click)="deleteTag(i)">x</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="subscribe" formControlName="subscribe">
+                <label class="form-check-label" for="subscribe">Subscribe to newsletter</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="modal.dismiss('Cross click')">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

@@ -1,0 +1,49 @@
+{
+  "profile": [
+    {
+      "profileImage": "C:\\fakepath\\IMG_20221204_200803.jpg",
+      "firstName": "Saurabh",
+      "lastName": "Jadhav",
+      "email": "saurabh@gmail.com",
+      "phone": "1234567891",
+      "age": 22,
+      "country": "India",
+      "state": "Maharashtra",
+      "address": "Kothrud, Pune",
+      "tags": [
+        "cricket",
+        "chess"
+      ],
+      "subscribe": true,
+      "id": "1"
+    },
+    {
+      "id": "b26a",
+      "profileImage": "C:\\fakepath\\WhatsApp Image 2024-05-24 at 21.35.45_123c70d6.jpg",
+      "firstName": "saurabh",
+      "lastName": "jadhav",
+      "email": "saurabh@gmail.com",
+      "phone": "9923662509",
+      "age": 22,
+      "country": "India",
+      "state": "Maharashtra",
+      "address": "Akola Mahashtra",
+      "tags": [],
+      "subscribe": true
+    }
+  ],
+  "profileImg": [
+    {
+      "id": "1"
+    },
+    {
+      "id": "2"
+    },
+    {
+      "id": "3"
+    },
+    {
+      "id": "4"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+.container-fluid {
+    background-color: rgb(226, 226, 226);
+}
+
+p {
+    display: flex;
+    align-items: center;
+}
+
+.email {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.text {
+    color: gray;
+}
+
+.terms {
+    font-weight: 500;
+    color: black;
+}
+
+.terms:hover {
+    color: rgb(41, 136, 230);
+}
+
+.icon {
+    border: 2px solid rgb(41, 136, 230);
+    border-radius: 5px;
+    background-color: rgb(184, 184, 184);
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+.img {
+    width: 20px;
+    height: 20px;
+}
+
+.bubble {
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+    background-color: #e9f3fb;
+    color: #2b6e96;
+    font-weight: bold;
+    border: 1px solid #c0d6e4;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.bubble::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #e9f3fb;
+    border-left: none;
+}
+
+.bubble::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -11px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    border-right: 11px solid #e9f3fb;
+    border-left: none;
+}

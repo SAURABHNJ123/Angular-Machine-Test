@@ -1,0 +1,29 @@
+.profileHeading {
+    margin-left: 8%;
+    color: rgb(41, 136, 230);
+}
+
+.profileImg {
+    width: 150px;
+    height: 150px;
+}
+
+.profileInfo {
+    padding: 0 120px;
+}
+
+.email {
+    color: rgb(41, 136, 230);
+
+}
+
+.profileBtn {
+    background-color: rgb(248, 192, 102);
+    font-weight: 500;
+    font-size: small;
+    margin-right: 4px;
+    padding: 3px;
+    border: none;
+    border-bottom: 3px solid rgb(253, 156, 12);
+    border-radius: 3px;
+}

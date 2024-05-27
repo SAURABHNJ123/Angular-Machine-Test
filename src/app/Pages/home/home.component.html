@@ -1,0 +1,223 @@
+<ngb-carousel class="upper w-100">
+    <ng-template ngbSlide *ngFor="let img of images">
+        <div class="picsum-img-wrapper">
+            <img [src]="img" alt="Random first slide" class="w-100 images" />
+        </div>
+    </ng-template>
+</ngb-carousel>
+<div class="lower">
+    <h1 class="fheading itallic">I'm looking for...</h1>
+    <form class="form-inline">
+        <div class="row">
+            <div class="col-md-8">
+                <input type="text" class="form-control mb-5 itallic" placeholder="Enter a Job Description">
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="fulltime">
+                    <label class="form-check-label itallic" for="fulltime">Full Time</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="partTime" value="option3">
+                    <label class="form-check-label itallic" for="partTime">Part Time/ Casual/ Freelance</label>
+                </div>
+                <div class="location custom-select">
+                    <!-- <select name="" id="" class="itallic">
+                        <option value="" class="hi">Select Your Location</option>
+                        <option value="">Mumbai</option>
+                        <option value="">Mumbai</option>
+                        <option value="">Mumbai</option>
+                        <option value="">Mumbai</option>
+                    </select> -->
+
+                    <select id="state"class="form-select">
+                        <option value="">Select Your Location</option>
+                        <option *ngFor="let country of countryList" [value]="country">{{ country }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2 mx-5">
+                <button class="btn btn-outline-primary searchBtn itallic"><img src="assets/icon/search.png"
+                        class="searchImg" alt="search button">
+                    Search</button>
+            </div>
+        </div>
+
+    </form>
+    <div class="d-grid gap-2 col-2 mx-auto mt-5 pt-5">
+        <button class="btn btn-primary text-centered" type="submit" (click)="openLg(content)">Register</button>
+    </div>
+</div>
+<div class="container-fluid gray pt-5 pb-5">
+    <div class="container findOutMore pt-5 pb-5">
+        <h3 class="itallic">We're leaders in </h3>
+        <h1>Creative Digital Recruitment</h1>
+        <hr class="ruler">
+        <p>
+            Based in Surry Hills, the creative hub of Sydney we are surrounded by creativity <br>
+            and that reflects on the type of jobs we recruit for.
+        </p>
+
+        <button type="button" class="btn btn-outline-primary">{{aboutText | uppercase}}</button>
+    </div>
+</div>
+
+<div class="container-fluid mailContainer pt-5 pb-5">
+    <div class="container findOutMore pt-5 pb-5">
+        <form>
+            <h5>Subscribe to our Job Seeker Mailing List</h5>
+            <div class="form-group form-control">
+                <input type="email" class="emailInput itallic" placeholder="Enter Your Email Address">
+                <img src="assets/icon/email.png" alt="email" class="emailImg">
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Register</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-2 demo">
+                    <div class="profile-cart">
+                        <img [src]="profileImageUrl" alt="Profile Image" class="profile-img"
+                            (click)="fileInput.click()">
+                        <input type="file" formControlName="profileImage" #fileInput style="display: none;"
+                            (change)="onFileSelected($event)">
+                    </div>
+                    <p class="profile-text">Upload Your Photo</p>
+                </div>
+                <div class="col-10 demo">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="First name"
+                                formControlName="firstName">
+                            <div *ngIf="profileForm.get('firstName').invalid && (profileForm.get('firstName').touched || profileForm.get('firstName').dirty)"
+                                class="text-danger">
+                                <small *ngIf="profileForm.get('firstName').errors?.required">First name is
+                                    required</small>
+                                <small *ngIf="profileForm.get('firstName').errors?.minlength">Minimum length is
+                                    2</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name" formControlName="lastName">
+                            <div *ngIf="profileForm.get('lastName').invalid && (profileForm.get('lastName').touched || profileForm.get('lastName').dirty)"
+                                class="text-danger">
+                                <small *ngIf="profileForm.get('lastName').errors?.required">Last name is
+                                    required</small>
+                                <small *ngIf="profileForm.get('lastName').errors?.minlength">Minimum length is 2</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                            <div *ngIf="profileForm.get('email').invalid && (profileForm.get('email').touched || profileForm.get('email').dirty)"
+                                class="text-danger">
+                                <small *ngIf="profileForm.get('email').errors?.required">Email is required</small>
+                                <small *ngIf="profileForm.get('email').errors?.email">Invalid email format</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="(541) 754-3010"
+                                formControlName="phone">
+                            <div *ngIf="profileForm.get('phone').invalid && (profileForm.get('phone').touched || profileForm.get('phone').dirty)"
+                                class="text-danger">
+                                <small *ngIf="profileForm.get('phone').errors?.required">Phone number is
+                                    required</small>
+                                <small *ngIf="profileForm.get('phone').errors?.pattern">Invalid phone format</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="age">Age &nbsp;</label>
+                            <input type="range" id="age" formControlName="age" (input)="setAge($event)">
+                            <span>{{ profileForm.get('age').value }}</span>
+                        </div>
+                        <div class="col">
+                            <select id="country" formControlName="country" (change)="selectCountry($event)"
+                                class="form-select">
+                                <option value="">Country</option>
+                                <option *ngFor="let country of countryList" [value]="country">{{ country }}</option>
+                            </select>
+                            <div *ngIf="profileForm.get('country').invalid && profileForm.get('country').touched"
+                                class="text-danger">
+                                <small class="error">Country is required</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <select id="state" formControlName="state" class="form-select"
+                                (change)="selectState($event)">
+                                <option value="">State</option>
+                                <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                            </select>
+                            <div *ngIf="profileForm.get('state').invalid && profileForm.get('state').touched"
+                                class="text-danger">
+                                <small class="error">State is required</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Address" formControlName="address">
+                            <div *ngIf="profileForm.get('address').invalid && (profileForm.get('address').touched || profileForm.get('address').dirty)"
+                                class="text-danger">
+                                <small *ngIf="profileForm.get('address').errors?.required">Address is
+                                    required</small>
+                                <small *ngIf="profileForm.get('address').errors?.minlength">Minimum length is
+                                    10</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <input type="text" class="form-control" placeholder="Tags" formControlName="tags"
+                                (keydown.enter)="addTags($event)">
+                            <div *ngIf="profileForm.get('tags').errors?.required && profileForm.get('tags').touched"
+                                class="text-danger">
+                                Tags are required.
+                            </div>
+                            <div *ngIf="tagLimitReached" class="text-danger mt-2">
+                                <small class="error">You can only add up to 3 tags</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div *ngFor="let tag of tags; let i = index" class="badge bg-secondary">
+                                <div class="tags">
+                                    <p style="display: inline-block; margin: 0 5px; color: white;">{{ tag |
+                                        titlecase }}
+                                    </p>
+                                    <span style="color: yellow; cursor: pointer;" (click)="deleteTag(i)">x</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="subscribe"
+                                    formControlName="subscribe">
+                                <label class="form-check-label" for="subscribe">Subscribe to newsletter</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    (click)="modal.dismiss()">Cancel</button>
+                                <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid"
+                                    (click)="modal.dismiss('Cross click')">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
