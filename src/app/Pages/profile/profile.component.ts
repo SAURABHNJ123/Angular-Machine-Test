@@ -59,6 +59,7 @@ export class ProfileComponent {
   onSubmit(): void {
     console.log(this.profileForm.value);
     this.apiService.updateData(this.profileForm.value).subscribe((data: any) => {
+      window.location.reload();
       this.toastr.success('Update Sucessfully.')
     })
   }

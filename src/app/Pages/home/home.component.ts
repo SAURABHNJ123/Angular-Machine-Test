@@ -42,14 +42,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.profileForm = this.fb.group({
       profileImage: [null, [Validators.required]],
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      firstName: ['', [Validators.required, Validators.maxLength(20),Validators.pattern('^[a-zA-Z ]*$')]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('[7-9]{1}[0-9]{9}')]],
+      phone: ['', [Validators.required]],
       age: [20, Validators.required],
       country: ['', Validators.required],
       state: ['', Validators.required],
-      address: ['', [Validators.required, Validators.minLength(10)]],
+      address: ['', [Validators.required]],
       tags: [''],
       subscribe: [false]
     });

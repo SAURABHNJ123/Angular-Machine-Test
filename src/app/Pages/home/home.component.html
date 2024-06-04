@@ -99,8 +99,10 @@
                                 class="text-danger">
                                 <small *ngIf="profileForm.get('firstName').errors?.required">First name is
                                     required</small>
-                                <small *ngIf="profileForm.get('firstName').errors?.minlength">Minimum length is
-                                    2</small>
+                                <small *ngIf="profileForm.get('firstName').errors?.maxlength">Maximum length is
+                                    20</small>
+                                <small *ngIf="profileForm.get('firstName').errors?.pattern">Only alphabetical characters are allowed
+                                      </small>    
                             </div>
                         </div>
                         <div class="col">
@@ -109,7 +111,6 @@
                                 class="text-danger">
                                 <small *ngIf="profileForm.get('lastName').errors?.required">Last name is
                                     required</small>
-                                <small *ngIf="profileForm.get('lastName').errors?.minlength">Minimum length is 2</small>
                             </div>
                         </div>
                     </div>
@@ -129,7 +130,6 @@
                                 class="text-danger">
                                 <small *ngIf="profileForm.get('phone').errors?.required">Phone number is
                                     required</small>
-                                <small *ngIf="profileForm.get('phone').errors?.pattern">Invalid phone format</small>
                             </div>
                         </div>
                     </div>
@@ -169,8 +169,6 @@
                                 class="text-danger">
                                 <small *ngIf="profileForm.get('address').errors?.required">Address is
                                     required</small>
-                                <small *ngIf="profileForm.get('address').errors?.minlength">Minimum length is
-                                    10</small>
                             </div>
                         </div>
                     </div>
